@@ -1,0 +1,407 @@
+
+html{
+    height : 100%;
+
+}
+
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin : 0;
+    padding : 0;
+    width : 100%;
+    height: 100%;
+    position: relative;    
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+}
+
+#stars{
+    position : relative;
+    height: 100%;
+    width : 100%;    
+    z-index: 10;
+    transform-origin: top left;
+
+}
+
+#nav{
+    position : fixed;
+    height: 100%;   
+    left : 0;
+    top : 0;
+    z-index: 100;
+}
+
+#nav>div{
+    height : 16.6666%;
+    display: flex;
+    background-color: #000;
+    color : #fff;
+    align-items: center;
+    justify-items: center;    
+}
+#nav a{
+    height : 100%;
+    width : 100%;
+    display: flex;
+    background-color: #000;
+    color : #fff;
+    align-items: center;
+    justify-items: center;    
+}
+
+#nav a.selected{
+    background-color: #052399;
+}
+
+#nav a img{
+    width: 50%;
+    margin :auto;
+}
+
+#nav .pencil-sub{
+    display : none;
+    position : absolute;
+    left : 100%;
+    background-color: #000;
+    z-index: 100;
+    padding : 20px;
+    box-sizing: border-box;
+    min-width: 400px;
+    bottom: 0;
+}
+
+#nav .pencil-sub .caption{
+    margin : 10px 0;
+}
+
+#nav .pencil-sub .slider{
+    position: relative;
+    width : 100%;
+    margin : 10px 0;
+}
+
+#nav .pencil-sub .slider .hori{
+    padding: 10px 0;
+    width : 100%;
+}
+#nav .pencil-sub .slider .hori .bar{
+    height: 5px;
+    width : 100%;
+    background-color : #fff;
+}
+
+#nav .pencil-sub .slider .vert{
+    position: absolute;
+    left: 0;
+    top : 0;
+    width: 5px;
+    height: 25px;
+    background-color: #fff;
+}
+
+#nav .pencil-sub .colors{
+    display: flex;
+}
+
+#nav .pencil-sub .colors .color{ 
+    background-color: #fff;
+    display: block;
+    width: 25%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+#nav .pencil-sub .colors .color.taken .box{
+    box-sizing: border-box;
+    padding-top: 70%;
+    margin-top : 15%;
+}
+
+#nav .pencil-sub .colors .color .box{ 
+    position: relative;
+    width :100%;
+    padding-top : 100%;    
+    background-color: #fff;
+}
+
+#nav .selected .pencil-sub{
+    display: block;
+}
+
+.popup{
+    position: absolute;
+    background-color: #fff;
+    z-index: 110;
+    top : 0;
+    left : 0;
+    width : 80%;
+    height : 80%;
+    left : 10%;
+    top : 10%;
+    padding : 20px;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.14);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.14);
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.14);
+    overflow-y: scroll;
+    display: none;
+}
+
+.overlay{
+    position: fixed;
+    left : 0;
+    top : 0;
+    width : 100%;
+    height : 100%;
+    background-color: rgba(255, 255, 255, .5);
+    z-index : 100;
+}
+
+.settings.popup .option{
+    padding : 10px;
+}
+.settings.popup .option .item{
+    padding : 5px 0;    
+}
+
+.settings.popup .option .caption{
+    font-size: 20px;
+    font-weight: 700;
+    padding : 5px 0;
+}
+
+.settings.popup .option .item>span{
+    display: inline-block;
+}
+
+.settings.popup .option .item .label{
+    min-width: 100px;
+}
+
+.settings.popup .option .item input[type="text"]{
+    min-width: 100px;
+}
+
+.settings.popup .option .item .address{
+    font-size: 13px;
+    background-color: #000;
+    font-weight: 600;
+    padding : 5px 10px;
+    color: #fff;
+}
+
+.settings .button{
+    text-align: center;
+}
+.settings .button a{
+    display: inline-block;
+    padding: 10px;
+    background-color: #000;
+    color : #fff;
+    text-decoration: none;    
+}
+
+
+.connectPC .line{
+    font-size: 13px;
+    font-weight: 500;
+    padding : 5px 0;
+}
+
+.connectPC .box{
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.connectPC .box .address{
+    display: inline-block;
+    background-color: #000;
+    color : #fff;
+    padding: 5px;
+
+}
+
+.connectPC .button{
+    text-align: center;
+}
+.connectPC .button a{
+    display: inline-block;
+    padding: 10px;
+    background-color: #000;
+    color : #fff;
+    text-decoration: none;    
+}
+
+#nav .selected .sub-more{
+    /* display: flex; */
+    display: block;
+    overflow: hidden;
+}
+
+#nav .sub-more{
+    position: absolute;
+    background-color: #000;
+    left: 100%;
+    display: none;
+    bottom: 0;
+    width: 100vw;
+    display: none;
+    padding-right: 100%;
+    box-sizing: border-box;    
+}
+
+#nav .sub-more .item{
+    width : 11.111%;
+    float: left;
+}
+
+#nav .selected.major{
+    background-color: #052399;
+}
+
+#nav .sub-more .item .caption{
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+.relative{
+    position : relative;
+}
+
+.selectOption{
+    position: fixed;
+    top : 0;
+    right: 0;
+    width : 20%;
+    display: none;
+    z-index: 105;
+}
+
+.selectOption.show{
+    display: flex;
+}
+
+.selectOption>div{
+    width : 33.33%;
+    background-color: #000;
+    text-align: center;
+}
+
+.selectOption>div>a{
+    display: block;
+    width: 100%;
+    color : #fff;
+    text-decoration: none;
+    line-height: 50px;
+}
+
+.openDialog{
+    position: absolute;
+    background-color: #fff;
+    z-index: 110;
+    top : 0;
+    left : 0;
+    width : 80%;
+    height : 80%;
+    left : 10%;
+    top : 10%;
+    padding : 20px 0;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.14);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.14);
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.14);
+    overflow-y: scroll;
+}
+
+.openDialog .item{
+    display: flex;
+    padding : 15px 20px;
+    box-sizing: border-box;
+
+}
+
+.openDialog .item:nth-child(odd){
+    background-color: rgb(226, 226, 226);
+}
+
+.openDialog .item .name{
+    padding: 5px;
+}
+
+.openDialog .item .options{
+    display: flex;
+}
+
+.openDialog .item .options>a{
+    text-transform: none;
+    padding : 5px;
+    background-color : #000;
+    color : #fff;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.saveDialog{
+    position: absolute;
+    background-color: #fff;
+    z-index: 110;
+    top : 0;
+    left : 0;
+    width : 80%;
+    height : 80%;
+    left : 10%;
+    top : 10%;
+    padding : 30px;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.14);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.14);
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.14);
+    overflow-y: scroll;   
+    text-align: center;
+}
+
+.pageNo{
+    position: absolute;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    right: 0;
+    top : 0;
+    z-index: 105;
+}
+
+.saveDialog>div{
+    padding: 10px 0;
+}
+
+.saveDialog .name input{
+    line-height: 20px;
+    padding: 10px;
+    min-width: 200px;
+    display: inline-block;
+}
+
+.saveDialog .button{
+    text-align: center;
+}
+.saveDialog .button a{
+    display: inline-block;
+    padding: 10px;
+    background-color: #000;
+    color : #fff;
+    text-decoration: none;    
+}
+
+.closeIt{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top : 0;
+    right: 0;
+}
+.closeIt img{
+    width: 100%;
+}

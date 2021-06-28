@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Remote Whiteboard</title>
+        <link rel = "stylesheet" href = "css/style.css" />
+        <script type = "text/javascript" src = "js/jquery.min.js"></script>
+        <script type = "text/javascript" src = "client/js/draw.js"></script>
+        <script type = "text/javascript" src = "js/custom.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+        </style>
+    </head>
+
+    <body style = "overflow:hidden">
+        <div class = "data"></div>
+        <div id = "nav">
+            <div>
+                <a href = "#" class = "eraser major">
+                    <img src = "images/eraser.svg"/>
+                </a>    
+            </div>   
+            <div>
+                <a href = "#" class = "redo">
+                    <img src = "images/redo.svg"/>
+                </a>    
+            </div>  
+            <div>
+                <a href = "#" class = "undo">
+                    <img src = "images/undo.svg"/>
+                </a>
+            </div>  
+            <div>
+                <a href = "#" class = "pencil selected major">
+                    <img src = "images/pencil-alt.svg"/>
+                </a>    
+            </div>  
+            <div>
+                <a href = "#" class = "pencil-more">
+                    <img src = "images/pencil-ruler.svg"/>
+                </a>
+                <div class = "pencil-sub">
+                    <div class = "caption">Stroke Size: <span class = "stroke">1</span></div>
+                    <div class = "slider">
+                        <div class = "hori"><div class = "bar"></div></div>
+                        <div class = "vert" style = "left : 10%"></div>
+                    </div>
+                    <div class = "caption">
+                        Color:
+                    </div>
+                    <div class = "colors">
+                        <div class = "color taken" data-color="#000000">
+                            <div class = "box" style = "background-color : #000"></div>
+                        </div>
+                        <div class = "color" data-color="#E60909">
+                            <div class = "box" style = "background-color : #E60909"></div>
+                        </div>
+                        <div class = "color" data-color="#0000C4">
+                            <div class = "box" style = "background-color : #0000C4"></div>
+                        </div>
+                        <div class = "color" data-color="#00CC00">
+                            <div class = "box" style = "background-color : #00CC00"></div>
+                        </div>
+                    </div>
+                </div>                
+            </div>               
+            <div class = "relative">
+                <a href = "#" class = "more">
+                    <img src = "images/arrow-right.svg"/>
+                </a>
+                <div class = "sub-more">
+                    <div class = "item">
+                        <a class = "select major" href = "#"><img src = "images/select.svg"/></a>
+                    </div>
+                    <div class = "item">
+                        <a class = "settings" href = "#"><img src = "images/cog.svg"/></a>
+                    </div>
+                    <div class = "item clear">
+                        <a href = "#"><span class = "caption">CLEAR<br/>PAGE</span></a>
+                    </div>
+                    <div class = "item prev">
+                        <a href = "#"><span class = "caption">PREV<br/>PAGE</span></a>
+                    </div>
+                    <div class = "item next">
+                        <a href = "#"><span class = "caption">NEXT<br/>PAGE</span></a>
+                    </div>
+                    <div class = "item new">
+                        <a href = "#"><span class = "caption">NEW<br/>DOC</span></a>
+                    </div>
+                    <div class = "item save">
+                        <a href = "#"><span class = "caption">SAVE<br/>DOC</span></a>
+                    </div>
+                    <div class = "item open">
+                        <a href = "#"><span class = "caption">OPEN<br/>DOC</span></a>
+                    </div>
+                    <div class = "item pdf">
+                        <a href = "#"><span class = "caption">SAVE<br/>PDF</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <canvas id = "stars">
+        </canvas>
+
+        <div class = "overlay" style = "display: none;"></div>
+        <div class = "settings popup">
+            <div class = "closeIt"><img src="images/close.svg" /> </div>
+            <div class = "option">
+                <div class = "caption">Canvas Size:</div>
+                <div class = "item">
+                    <span class = "label">Height:</span> 
+                    <input class = "dimHeight" type="text" value="1000"/> 
+                </div>
+                <div class = "item"> 
+                    <span class = "label">Width:</span> 
+                    <input class = "dimWidth" type="text" value="1000"/> 
+                </div>
+            </div>
+            <div class = "option">
+                <div class = "caption">Number of Grids</div>
+                <div class = "item"> 
+                    <span class = "label">Rows: </span> 
+                    <input class = "gridRow" type="text" value="1000"/> 
+                </div>
+                <div class = "item"> 
+                    <span class = "label">Columns: </span> 
+                    <input class = "gridCol" type="text" value="1000"/> 
+                </div>
+            </div>
+            <div class = "option">
+                <div class="item">
+                    <span class="label">Address: </span> 
+                    <span class = "address">192.168.0.1:8080</span>
+                </div>
+                <div class = "item">
+                    <span>Always show popup on startup: </span>
+                    <input class = "startPopup" type="checkbox" />
+                </div>
+            </div>
+            <div class = "button">
+                <a href = "#">OK!</a>
+            </div>            
+        </div>
+
+        <div class = "selectOption" style = "z-index : 1000">
+            <div><a class = "cut" href = "#">Cut</a></div>
+            <div><a class = "copy" href = "#">Copy</a></div>
+            <div><a class = "paste" href = "#">Paste</a></div>
+        </div>
+        <div class = "pageNo">Page: <span class = "no">1</span></div>
+
+        <div class = "connectPC popup" style = "display : none">
+            <div class = "closeIt"><img src="images/close.svg" /> </div>
+            <div class = "line">To project it on your PC/Laptop:</div>
+            <div class = "line">First connect your pc and your phone over the same wifi network. Then restart this app.</div>
+            <div class = "line">
+                If your pc and phone are already on the same wifi, navigate to the address below using any webbrowser on your pc. Enjoy :)
+            </div> 
+            <div class = "box">
+                <div class = "address">http://192.168.0.1:8080</div>
+            </div>
+
+            <div class = "button">
+                <a href = "#">OK!</a>
+            </div>
+        </div>
+        <div class = "openDialog" style = "display: none;">
+            <div class = "closeIt"><img src="images/close.svg" /> </div>
+            <div class = "list">
+                <div class = "item">
+                    <div class = "name">Todays Class</div>
+                    <div class = "options">
+                        <a href = "#" class = "open">OPEN</a>
+                        <a href = "#" class = "save">DELETE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "saveDialog" style = "display: none;">
+            <div class = "closeIt"><img src="images/close.svg" /> </div>
+            <div class = "name"><span>File Name: </span><input type = "text" /></div>
+            <div class = "message"></div>
+            <div class = "button">
+                <a href = "#">SAVE</a>
+            </div>
+        </div>
+    </body>
+</html>
